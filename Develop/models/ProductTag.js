@@ -3,7 +3,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Import the Product model
-const Product = require('./Product'); imported
+const Product = require('./Product');
 
 // Import the Tag model
 const Tag = require('./Tag'); 
