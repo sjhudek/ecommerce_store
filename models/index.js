@@ -3,7 +3,8 @@
 const Product = require('./Product');
 const Tag = require('./Tag');
 const Category = require('./Category');
-const ProductTag = require('./ProductTag'); // Assuming you have this model
+const ProductTag = require('./ProductTag');
+const sequelize = require('../config/connection');  
 
 Product.belongsTo(Category, {
   foreignKey: 'category_id',
@@ -33,6 +34,7 @@ ProductTag.belongsTo(Tag, {
 });
 
 module.exports = {
+  sequelize,
   Product,
   Tag,
   Category,
