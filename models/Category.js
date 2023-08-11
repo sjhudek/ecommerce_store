@@ -1,6 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection.js');
-const Product = require('./Product'); // Import the Product model if not already imported
+const Product = require('./Product');
+
+// const Product = require('./Product');// Import the Product model if not already imported
 
 class Category extends Model {}
 
@@ -29,10 +31,5 @@ Category.init(
     modelName: 'category',
   }
 );
-
-// Define association between Category and Product
-Category.hasMany(Product, {
-  foreignKey: 'category_id', // This should match the column name in the Product model
-});
 
 module.exports = Category;
