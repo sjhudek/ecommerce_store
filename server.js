@@ -4,24 +4,19 @@ const routes = require('./routes');
 // Import your models
 const db = require('./models');
 
-// Sync Sequelize models with the database
-db.sequelize.sync({ force: false }).then(() => {
-  // Start the server
-  app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}!`);
-  });
-});
-
+require('./models/associations');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api', routes);
 
-app.use(routes);
-
-// sync sequelize models to the database, then turn on the server
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
+// Sync Sequelize models with the database
+db.sequelize.sync({ force: false }).then(() => {
+  // Start the server
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
+  });
 });
