@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Category, Product, Tag } = require('../../models');
 
 // The `/api/categories` endpoint
-router.get('/api/category', async (req, res) => {
+router.get('/category', async (req, res) => {
   console.log("Inside GET all categories route");
 
   // find all categories
@@ -18,7 +18,7 @@ router.get('/api/category', async (req, res) => {
 });
 
 
-router.get('/api/category/:id', async(req, res) => {
+router.get('/category/:id', async(req, res) => {
   console.log("Inside GET all categories route");
 
   // find one category by its `id` value
@@ -43,7 +43,7 @@ router.get('/api/category/:id', async(req, res) => {
   }
 });
 
-router.post('/api/category', async(req, res) => {
+router.post('/category', async(req, res) => {
   console.log("Inside POST all categories route");
 
   // create a new category
@@ -55,7 +55,7 @@ router.post('/api/category', async(req, res) => {
   }
 });
 
-router.put('/api/category/:id', async(req, res) => {
+router.put('/category/:id', async(req, res) => {
   console.log("Inside PUT all categories route");
 
   // update a category by its `id` value
@@ -68,7 +68,7 @@ router.put('/api/category/:id', async(req, res) => {
   }
 });
 
-router.delete('/api/category/:id', async(req, res) => {
+router.delete('/category/:id', async(req, res) => {
   console.log("Inside DELETE all categories route");
 
   // delete a category by its `id` value
