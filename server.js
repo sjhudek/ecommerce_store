@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./routes/api');
 
 // Import your models
 const db = require('./models');
@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', routes);
+
 
 // Sync Sequelize models with the database
 db.sequelize.sync({ force: false }).then(() => {
