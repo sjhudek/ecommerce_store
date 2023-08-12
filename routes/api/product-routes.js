@@ -35,7 +35,8 @@ router.get('/:id', async(req, res) => {
 
 
 // create new product
-router.post('/product', async (req, res) => {
+// create new product
+router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
 
@@ -52,9 +53,10 @@ router.post('/product', async (req, res) => {
     res.status(200).json(product);
   } catch (err) {
     console.error(err);
-    res.status(400).json({ message: 'Error creating the product' });
+    res.status(400).json({ message: `Error creating the product: ${err.message}` });
   }
 });
+
 
 // update product
 router.put('/:id', (req, res) => {
