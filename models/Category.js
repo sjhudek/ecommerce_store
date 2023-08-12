@@ -1,14 +1,14 @@
+// Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection.js');
-const Product = require('./Product');
 
-// const Product = require('./Product');// Import the Product model if not already imported
+// Import our database connection from config.js
+const sequelize = require('../config/connection');
 
+// Initialize Category model (table) by extending off Sequelize's Model class
 class Category extends Model {}
 
-// Define table columns and configuration
+// Set up fields and rules for Category model
 Category.init(
-  // Define table columns and configuration
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,13 +16,11 @@ Category.init(
       autoIncrement: true,
       allowNull: false,
     },
-    // Define a category_name column
     category_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
-  // Configure metadata, including naming conventions
   {
     sequelize,
     timestamps: false,
