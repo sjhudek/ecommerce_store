@@ -1,19 +1,16 @@
+// ProductTag.js
+
+// Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
 
+// Import our database connection from config.js
 const sequelize = require('../config/connection');
 
-// Import the Product model
-const Product = require('./Product');
-
-// Import the Tag model
-const Tag = require('./Tag'); 
-
-
+// Initialize ProductTag model (table) by extending off Sequelize's Model class
 class ProductTag extends Model {}
 
-// Define table columns and configuration
+// Set up fields and rules for ProductTag model
 ProductTag.init(
-  // Define table columns and configuration
   {
     id: {
       type: DataTypes.INTEGER,
@@ -21,26 +18,21 @@ ProductTag.init(
       autoIncrement: true,
       allowNull: false,
     },
-    // Define a product_id column
     product_id: {
       type: DataTypes.INTEGER,
       references: {
-        // product model
-        model: Product,
-        // primary key of the referenced model
+        model: 'product',
         key: 'id',
       },
     },
-    // Define a tag_id column
     tag_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: Tag,
+        model: 'tag',
         key: 'id',
       },
     },
   },
-  // Configure metadata, including naming conventions
   {
     sequelize,
     timestamps: false,
