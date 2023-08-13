@@ -55,45 +55,20 @@ router.post('/', async(req, res) => {
   }
 });
 
-router.put('/:id', async(req, res) => {
-  console.log("Inside PUT all categories route");
-
-  // update a category by its `id` value
+router.delete('/:id', async (req, res) => {
   try {
-    const [updatedRows] = await Category.update(req.body, {
+    const deletedCategory = await Category.destroy({
       where: { id: req.params.id }
     });
-    
-    if (updatedRows === 0) {
-      return res.status(404).json({ message: 'No category found with this id!' });
+
+    if (!deletedCategory) {
+      return res.status(404).json({ message: 'No category found with this ID.' });
     }
-    res.status(200).json({ message: 'Category updated successfully.' });
+
+    res.status(200).json({ message: "Category deleted successfully." });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
-});
-
-
-// router.put('/:id', async(req, res) => {
-//   console.log('Starting PUT operation');
-//   try {
-//     console.log('Updating category in database');
-//       const [updatedRows] = await Category.update(req.body, {
-//           where: { id: req.params.id }
-//       });
-
-//       if (updatedRows === 0) {
-//           return res.status(404).json({ message: 'No category found with this id!' });
-//       }
-//       console.log('Finished PUT operation');
-
-//       res.status(200).json({ message: 'Category updated successfully.' });
-//   } catch (err) {
-//       res.status(400).json(err);
-//   }
-// });
-router.put('/:id', (req, res) => {
-  res.status(200).json({ message: 'Test response' });
 });
 
 module.exports = router;
