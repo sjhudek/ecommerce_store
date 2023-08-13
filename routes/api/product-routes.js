@@ -105,15 +105,19 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const deletedProduct = await Product.destroy({
-      where: { id: req.params.id }
+    // Remove associations between the tag and products in the product_tag table
+    await ProductTag.destroy({
+      where: { tag_id: req.params.id },
+    });
+    const deletedTag = await Tag.destroy({
+      where: { id: req.params.id },
     });
 
-    if (!deletedProduct) {
-      return res.status(404).json({ message: 'No product found with this ID.' });
+    if (!deletedTag) {
+      return res.status(404).json({ message: "No tag found with this ID." });
     }
 
-    res.status(200).json({ message: 'Product deleted successfully.' });
+    res.status(200).json({ message: "Tag deleted successfully." });
   } catch (err) {
     res.status(500).json(err);
   }
