@@ -39,9 +39,9 @@ router.post('/', async(req, res) => {
   }
 });
 
-router.put('/:id', async(req, res) => {
+router.put('/products/:productId/tags', async(req, res) => {
   try {
-    const updatedTag = await Tag.update({ name: req.body.name }, {
+    const updatedTag = await Tag.update({ name: req.body.tags }, {
       where: { id: req.params.id }
     });
     if (!updatedTag) {
